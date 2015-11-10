@@ -1,7 +1,7 @@
 
 public enum Category {
 
-    ALCOHOL(0),AQUA(1),BAKERY(2),DAIRY(3);
+    ALCOHOL(0),AQUA(1),BAKERY(2),DAIRY(3), NONE(4);
 
     private int id;
 
