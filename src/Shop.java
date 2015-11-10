@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Shop {
 
@@ -17,8 +18,10 @@ public class Shop {
 
     public Shop() {
 
-       actionProduct = new ActionProduct();
-       initShop();
+        actionProduct = new ActionProduct();
+        System.out.println(Arrays.deepToString(actionProduct.getProducts()));
+        System.out.println(Arrays.deepToString(actionProduct.getCatalogProducts()));
+        initShop();
 
 
     }
@@ -26,7 +29,7 @@ public class Shop {
 
     public void initShop(){
 
-         addCountToStorage(actionProduct.findProductByName("Jemeson"), 3);
+         //addCountToStorage(actionProduct.findProductByName("Jemeson"), 3);
 
 //        addCountToShop(product, 5);
 //        addCountToShop(product, 10);

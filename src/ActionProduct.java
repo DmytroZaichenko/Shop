@@ -17,6 +17,10 @@ public class ActionProduct {
         return products;
     }
 
+    public Product[][] getCatalogProducts() {
+        return catalogProducts;
+    }
+
     private void fillCatalogProducts() {
         for (int i = 0; i < catalogProducts.length; i++) {
             catalogProducts[i] = new Product[100];
@@ -47,16 +51,16 @@ public class ActionProduct {
 
     private void initProducts() {
 
-        Product product = new Product(Category.ALCOHOL, "Jemeson", 521.26);
+        Product product = new Product(Category.ALCOHOL, "Jemeson", 521.26, getNewIdxFromProducts());
         addToArrays(product);
 
-        product = new Product(Category.ALCOHOL, "William Lawson`s", 247.10);
+        product = new Product(Category.ALCOHOL, "William Lawson`s", 247.10, getNewIdxFromProducts());
         addToArrays(product);
 
-        product = new Product(Category.DAIRY, "Burenka", 20.05);
+        product = new Product(Category.DAIRY, "Burenka", 20.05, getNewIdxFromProducts());
         addToArrays(product);
 
-        product = new Product(Category.DAIRY, "Kupyanskoe", 18.05);
+        product = new Product(Category.DAIRY, "Kupyanskoe", 18.05, getNewIdxFromProducts());
         addToArrays(product);
 
     }
@@ -75,9 +79,24 @@ public class ActionProduct {
             }
         }
 
-        Product product = new Product(Category.NONE,name,0);
+        Product product = new Product(Category.NONE,name,0,getNewIdxFromProducts());
         return product.getId();
     }
+
+    public int getNewIdxFromProducts() {
+
+        int idx = 0;
+
+        for (int i = 0; i < products.length; i++) {
+            if (products[i] == null){
+                idx = i;
+                break;
+            }
+        }
+
+        return  ++idx;
+    }
+
 
 
 
