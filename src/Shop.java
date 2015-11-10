@@ -21,7 +21,7 @@ public class Shop {
         return customers;
     }
 
-    public Transaction[] getTransactions() {
+    public Transaction[][] getTransactions() {
         return transactions;
     }
 
@@ -61,6 +61,12 @@ public class Shop {
 
         product = new Product(Category.DAIRY, "Kupyanskoe", 18.05);
         addCountToShop(product, 10);
+
+        customers[0] = new Customer(1,"Demo1");
+        customers[1] = new Customer(2,"Demo2");
+        customers[2] = new Customer(3,"Demo3");
+
+        transactions[0] = new Transaction();
 
     }
 
@@ -109,6 +115,7 @@ public class Shop {
         for (int i = 0; i < catalogProducts[position].length ; i++) {
             if (catalogProducts[position][i] == null){
                 catalogProducts[position][i] = product;
+                break;
             }
         }
     }

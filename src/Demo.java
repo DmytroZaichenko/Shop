@@ -8,7 +8,7 @@ public class Demo {
         Shop shop = new Shop();
         System.out.println("products: "+Arrays.deepToString(shop.getProducts()));
         System.out.println("storage: "+Arrays.deepToString(shop.getStorage()));
-
+        System.out.println("for category: "+Arrays.deepToString(shop.getCatalogProducts()));
     }
 
 }
