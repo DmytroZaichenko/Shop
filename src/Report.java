@@ -5,6 +5,8 @@ import java.util.Date;
 
 public class Report {
 
+    public final DateFormat dateFormatReport = DateFormat.getDateInstance(DateFormat.DEFAULT);
+
     private Shop shop;
 
     public Report(Shop shop) {
@@ -74,9 +76,7 @@ public class Report {
 
     public void printTransactionOnDate(Date date){
 
-        DateFormat df = DateFormat.getDateInstance(DateFormat.DEFAULT);
-
-        System.out.println("TRANSACTION ON " + df.format(date));
+        System.out.println("TRANSACTION ON " + dateFormatReport.format(date));
 
         Transaction[] transactions = shop.getTransactions();
         ActionProduct ap = shop.getActionProduct();
@@ -84,17 +84,21 @@ public class Report {
 
         boolean isBuy = false;
         int nom = 0;
-        Transaction tran = null;
+        double count = 0;
+        double sum = 0;
 
         for (int i = 0; i < transactions.length; i++) {
 
-            tran = transactions[i];
+            Transaction tran = transactions[i];
 
             if (tran != null && tran.getDate().equals(date)){
 
                 Product product   = ap.findProductByIndex(tran.getIdProduct());
                 Customer customer = ac.findCustomerByIndex(tran.getIdCustomer());
+
                 ++nom;
+                count += tran.getCount();
+                sum += tran.getPrice() * tran.getCount();
 
                 System.out.println(
                                          nom+". customer: " + customer.getName()
@@ -105,6 +109,46 @@ public class Report {
             }
 
         }
+
+        System.out.println("========================================");
+        System.out.println("In total: "+ nom + " of sales, count: "+ count + " sum: "+sum);
+
+    }
+
+    public void printCountOfSalesByDay(int countOfDay) {
+
+        if (countOfDay > 0){
+            System.out.println("It had no future sales.");
+            return;
+        }
+
+        Date fDate = shop.getDate(countOfDay);
+
+        System.out.println("SHOW SALES WITH " + dateFormatReport.format(fDate));
+
+        double countByDay = 0;
+        Transaction[] transactions = shop.getTransactions();
+
+        while ( countOfDay != 1){
+
+            countByDay = 0;
+            for (int i = 0; i < transactions.length; i++) {
+
+                Transaction tran = transactions[i];
+                if (tran == null){break;};
+
+                if (tran.getDate().equals(fDate)){
+                    countByDay += tran.getCount();
+                }
+            }
+
+            System.out.println("date: "+dateFormatReport.format(fDate)+", number of sales: "+countByDay);
+            countOfDay = countOfDay + 1;
+            fDate = shop.getDate(countOfDay);
+
+        }
+
+
 
     }
 

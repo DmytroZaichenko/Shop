@@ -58,6 +58,7 @@ public class ActionCustomer {
         }
 
         Customer customer = new Customer(getNewIdx(),name);
+        addToCustomers(customer);
         return customer.getId();
 
     }

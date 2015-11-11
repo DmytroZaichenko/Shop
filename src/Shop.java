@@ -45,7 +45,8 @@ public class Shop {
         //report.printCatalog();
         //report.printPrice();
         //report.printRemainderOnStorage();
-        report.printTransactionOnDate(getDate(-7));
+        report.printTransactionOnDate(getDate(-6));
+        //report.printCountOfSalesByDay(-3);
 
 //        Date currentDate = new Date();
 //        System.out.println("Date currentDate = " + currentDate);
@@ -74,13 +75,16 @@ public class Shop {
 
     public void initShop(){
 
+        //add count on the storage
         addCountToStorage(actionProduct.findProductByName("Jemeson"), 3);
         addCountToStorage(actionProduct.findProductByName("Red Label"), 5);
         addCountToStorage(actionProduct.findProductByName("Burenka"), 10);
         addCountToStorage(actionProduct.findProductByName("Kupyanskoe"), 21);
 
+        //add transaction
         int idxCustomer = actionCustomer.findCustomerByName("Perto");
         int idxProduct = actionProduct.findProductByName("Burenka");
+
         addTransaction(idxCustomer, idxProduct, getDate(-7), 1 , actionProduct.getPriceByIdx(idxProduct));
 
         idxProduct = actionProduct.findProductByName("white bread");
@@ -88,17 +92,24 @@ public class Shop {
 
         idxCustomer = actionCustomer.findCustomerByName("Dmytro");
         addTransaction(idxCustomer, idxProduct, getDate(-6), 2 , actionProduct.getPriceByIdx(idxProduct));
+
         idxProduct = actionProduct.findProductByName("burenka");
         addTransaction(idxCustomer, idxProduct, getDate(-6), 2 , actionProduct.getPriceByIdx(idxProduct));
 
 
-
     }
 
-    private Date getDate(int countOfDate){
-        Calendar date = new GregorianCalendar();
-        date.add(Calendar.DAY_OF_YEAR,countOfDate);
-        return date.getTime();
+    public Date getDate(int countOfDate){
+
+        Calendar c = new GregorianCalendar();
+        c.add(Calendar.DAY_OF_YEAR,countOfDate);
+
+        c.set(c.HOUR_OF_DAY,0);
+        c.set(c.MINUTE,0);
+        c.set(c.SECOND,0);
+        c.set(c.MILLISECOND,0);
+
+        return c.getTime();
     }
 
     private void addTransaction(int idCustomer, int idProduct, Date date, double count, double price ){
