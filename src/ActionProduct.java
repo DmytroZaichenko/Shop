@@ -66,7 +66,7 @@ public class ActionProduct {
         product = new Product(Category.BAKERY, "Black bread", 2.65, getNewIdx());
         addToArrays(product);
 
-        product = new Product(Category.DAIRY, "White bread", 3.25, getNewIdx());
+        product = new Product(Category.BAKERY, "White bread", 3.25, getNewIdx());
         addToArrays(product);
 
     }
@@ -109,7 +109,7 @@ public class ActionProduct {
     }
 
     public double getPriceByIdx(int idx){
-        return products[idx].getPrice();
+        return products[idx - 1].getPrice();
     }
 
 }

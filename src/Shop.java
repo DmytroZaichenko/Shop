@@ -41,36 +41,7 @@ public class Shop {
 
         initShop();
 
-        report = new Report(this);
-        //report.printCatalog();
-        //report.printPrice();
-        //report.printRemainderOnStorage();
-        report.printTransactionOnDate(getDate(-6));
-        //report.printCountOfSalesByDay(-3);
-
-//        Date currentDate = new Date();
-//        System.out.println("Date currentDate = " + currentDate);
-//        currentDate = new Date();
-//        Long time = currentDate.getTime();
-//        long anotherDate = -1;
-//        time += (60*60*24*1000*anotherDate);
-//        currentDate = new Date(time);
-//        System.out.println("Date currentDate = "+currentDate);
-//
-//        Locale local = new Locale("uk","UK");
-//        DateFormat df = DateFormat.getDateInstance(DateFormat.DEFAULT,local);
-//        currentDate = new Date();
-//        System.out.println("currentDateTime = "+df.format(currentDate));
-//
-//        SimpleDateFormat sdf = new SimpleDateFormat("ddMMYYYY");
-//        currentDate = new Date();
-//        System.out.println("currentDateTime = "+sdf.format(currentDate));
-
-
-
-
     }
-
 
 
     public void initShop(){

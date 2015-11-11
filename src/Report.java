@@ -1,6 +1,4 @@
 import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
 import java.util.Date;
 
 public class Report {
@@ -21,6 +19,7 @@ public class Report {
 
         Product[][] catalogProduct = shop.getActionProduct().getCatalogProducts();
 
+        System.out.println("");
         System.out.println("PRODUCTS BY CATEGORY");
 
         for (int i = 0; i < catalogProduct.length ; i++) {
@@ -43,6 +42,7 @@ public class Report {
     public void printPrice(){
 
         Product[] products = shop.getActionProduct().getProducts();
+        System.out.println("");
         System.out.println("PRICE");
         for (int i = 0; i < products.length ; i++) {
             Product p = products[i];
@@ -76,6 +76,7 @@ public class Report {
 
     public void printTransactionOnDate(Date date){
 
+        System.out.println("");
         System.out.println("TRANSACTION ON " + dateFormatReport.format(date));
 
         Transaction[] transactions = shop.getTransactions();
@@ -117,6 +118,7 @@ public class Report {
 
     public void printCountOfSalesByDay(int countOfDay) {
 
+        System.out.println("");
         if (countOfDay > 0){
             System.out.println("It had no future sales.");
             return;
@@ -147,8 +149,6 @@ public class Report {
             fDate = shop.getDate(countOfDay);
 
         }
-
-
 
     }
 
