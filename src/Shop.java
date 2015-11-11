@@ -1,8 +1,16 @@
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Locale;
+
+import static java.text.DateFormat.getDateInstance;
 
 public class Shop {
 
     private ActionProduct actionProduct;
+    private Report report;
     private Customer[] customers;
     private Transaction[] transactions;
 
@@ -16,11 +24,35 @@ public class Shop {
         return storage;
     }
 
+    public ActionProduct getActionProduct() {
+        return actionProduct;
+    }
+
     public Shop() {
 
         actionProduct = new ActionProduct();
-        System.out.println(Arrays.deepToString(actionProduct.getProducts()));
-        System.out.println(Arrays.deepToString(actionProduct.getCatalogProducts()));
+        report = new Report(this);
+        report.printCatalog();
+        report.printPrice();
+
+//        Date currentDate = new Date();
+//        System.out.println("Date currentDate = " + currentDate);
+//        currentDate = new Date();
+//        Long time = currentDate.getTime();
+//        long anotherDate = -1;
+//        time += (60*60*24*1000*anotherDate);
+//        currentDate = new Date(time);
+//        System.out.println("Date currentDate = "+currentDate);
+//
+//        Locale local = new Locale("uk","UK");
+//        DateFormat df = DateFormat.getDateInstance(DateFormat.DEFAULT,local);
+//        currentDate = new Date();
+//        System.out.println("currentDateTime = "+df.format(currentDate));
+//
+//        SimpleDateFormat sdf = new SimpleDateFormat("ddMMYYYY");
+//        currentDate = new Date();
+//        System.out.println("currentDateTime = "+sdf.format(currentDate));
+
         initShop();
 
 
