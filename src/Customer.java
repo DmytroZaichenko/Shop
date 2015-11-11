@@ -20,6 +20,14 @@ public class Customer {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public String getPhone() {
         return phone;
     }

@@ -10,14 +10,15 @@ import static java.text.DateFormat.getDateInstance;
 public class Shop {
 
     private ActionProduct actionProduct;
+    private ActionCustomer actionCustomer;
     private Report report;
-    private Customer[] customers;
+
     private Transaction[] transactions;
 
     private int[][] storage;
 
-    public Customer[] getCustomers() {
-        return customers;
+    public ActionCustomer getActionCustomer() {
+        return actionCustomer;
     }
 
     public int[][] getStorage() {
@@ -31,6 +32,8 @@ public class Shop {
     public Shop() {
 
         actionProduct = new ActionProduct();
+        actionCustomer = new ActionCustomer();
+
         report = new Report(this);
         report.printCatalog();
         report.printPrice();
@@ -61,7 +64,7 @@ public class Shop {
 
     public void initShop(){
 
-         //addCountToStorage(actionProduct.findProductByName("Jemeson"), 3);
+         addCountToStorage(actionProduct.findProductByName("Jemeson"), 3);
 
 //        addCountToShop(product, 5);
 //        addCountToShop(product, 10);

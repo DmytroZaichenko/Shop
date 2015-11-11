@@ -36,14 +36,29 @@ public class ActionCustomer {
         return  ++idx;
     }
 
-    public void addToCustomers(Customer customer){
+    public void addToCustomers(Customer customer) {
 
-        for (int i = 0; i < customers.length ; i++) {
+        for (int i = 0; i < customers.length; i++) {
             if (customers[i] == null) {
                 customers[i] = customer;
                 break;
             }
         }
+
+    }
+
+    public int findCustomerByName(String name){
+
+        int idx = 0;
+
+        for (int i = 0; i < customers.length; i++) {
+            if (customers[i].getName().toUpperCase() == name.toUpperCase()) {
+                return idx;
+            }
+        }
+
+        Customer customer = new Customer(getNewIdx(),name);
+        return customer.getId();
 
     }
 }

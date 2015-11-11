@@ -51,16 +51,16 @@ public class ActionProduct {
 
     private void initProducts() {
 
-        Product product = new Product(Category.ALCOHOL, "Jemeson", 521.26, getNewIdxFromProducts());
+        Product product = new Product(Category.ALCOHOL, "Jemeson", 521.26, getNewIdx());
         addToArrays(product);
 
-        product = new Product(Category.ALCOHOL, "William Lawson`s", 247.10, getNewIdxFromProducts());
+        product = new Product(Category.ALCOHOL, "William Lawson`s", 247.10, getNewIdx());
         addToArrays(product);
 
-        product = new Product(Category.DAIRY, "Burenka", 20.05, getNewIdxFromProducts());
+        product = new Product(Category.DAIRY, "Burenka", 20.05, getNewIdx());
         addToArrays(product);
 
-        product = new Product(Category.DAIRY, "Kupyanskoe", 18.05, getNewIdxFromProducts());
+        product = new Product(Category.DAIRY, "Kupyanskoe", 18.05, getNewIdx());
         addToArrays(product);
 
     }
@@ -79,11 +79,11 @@ public class ActionProduct {
             }
         }
 
-        Product product = new Product(Category.NONE,name,0,getNewIdxFromProducts());
+        Product product = new Product(Category.NONE,name,0, getNewIdx());
         return product.getId();
     }
 
-    public int getNewIdxFromProducts() {
+    public int getNewIdx() {
 
         int idx = 0;
 
