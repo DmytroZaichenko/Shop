@@ -1,9 +1,7 @@
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 
 import static java.text.DateFormat.getDateInstance;
 
@@ -29,14 +27,25 @@ public class Shop {
         return actionProduct;
     }
 
+    public Transaction[] getTransactions() {
+        return transactions;
+    }
+
     public Shop() {
 
         actionProduct = new ActionProduct();
         actionCustomer = new ActionCustomer();
+        //
+        storage = new int[100][2];
+        transactions = new Transaction[100];
+
+        initShop();
 
         report = new Report(this);
-        report.printCatalog();
-        report.printPrice();
+        //report.printCatalog();
+        //report.printPrice();
+        //report.printRemainderOnStorage();
+        report.printTransactionOnDate(getDate(-7));
 
 //        Date currentDate = new Date();
 //        System.out.println("Date currentDate = " + currentDate);
@@ -56,26 +65,63 @@ public class Shop {
 //        currentDate = new Date();
 //        System.out.println("currentDateTime = "+sdf.format(currentDate));
 
-        initShop();
+
 
 
     }
 
 
+
     public void initShop(){
 
-         addCountToStorage(actionProduct.findProductByName("Jemeson"), 3);
+        addCountToStorage(actionProduct.findProductByName("Jemeson"), 3);
+        addCountToStorage(actionProduct.findProductByName("Red Label"), 5);
+        addCountToStorage(actionProduct.findProductByName("Burenka"), 10);
+        addCountToStorage(actionProduct.findProductByName("Kupyanskoe"), 21);
 
-//        addCountToShop(product, 5);
-//        addCountToShop(product, 10);
-//        addCountToShop(product, 10);
-//
-//        customers[0] = new Customer(1,"Demo1");
-//        customers[1] = new Customer(2,"Demo2");
-//        customers[2] = new Customer(3,"Demo3");
-//
-//        transactions[0] = new Transaction();
+        int idxCustomer = actionCustomer.findCustomerByName("Perto");
+        int idxProduct = actionProduct.findProductByName("Burenka");
+        addTransaction(idxCustomer, idxProduct, getDate(-7), 1 , actionProduct.getPriceByIdx(idxProduct));
 
+        idxProduct = actionProduct.findProductByName("white bread");
+        addTransaction(idxCustomer, idxProduct, getDate(-7), 1 , actionProduct.getPriceByIdx(idxProduct));
+
+        idxCustomer = actionCustomer.findCustomerByName("Dmytro");
+        addTransaction(idxCustomer, idxProduct, getDate(-6), 2 , actionProduct.getPriceByIdx(idxProduct));
+        idxProduct = actionProduct.findProductByName("burenka");
+        addTransaction(idxCustomer, idxProduct, getDate(-6), 2 , actionProduct.getPriceByIdx(idxProduct));
+
+
+
+    }
+
+    private Date getDate(int countOfDate){
+        Calendar date = new GregorianCalendar();
+        date.add(Calendar.DAY_OF_YEAR,countOfDate);
+        return date.getTime();
+    }
+
+    private void addTransaction(int idCustomer, int idProduct, Date date, double count, double price ){
+
+        Transaction t = new Transaction();
+        t.setIdCustomer(idCustomer);
+        t.setIdProduct(idProduct);
+        t.setDate(date);
+        t.setCount(count);
+        t.setPrice(price);
+
+        addToTransaction(t);
+
+    }
+
+    private void addToTransaction(Transaction t){
+
+        for (int i = 0; i < transactions.length ; i++) {
+            if (transactions[i] == null){
+                transactions[i] = t;
+                break;
+            }
+        }
     }
 
     public void addCountToStorage(int idxProduct, int count){

@@ -63,6 +63,12 @@ public class ActionProduct {
         product = new Product(Category.DAIRY, "Kupyanskoe", 18.05, getNewIdx());
         addToArrays(product);
 
+        product = new Product(Category.BAKERY, "Black bread", 2.65, getNewIdx());
+        addToArrays(product);
+
+        product = new Product(Category.DAIRY, "White bread", 3.25, getNewIdx());
+        addToArrays(product);
+
     }
 
     private void addToArrays(Product product) {
@@ -74,12 +80,14 @@ public class ActionProduct {
         int idx = 0;
 
         for (int i = 0; i < products.length; i++) {
-            if (products[i].getName().toUpperCase() == name.toUpperCase()) {
-                return idx;
+
+            if (products[i] != null && products[i].getName().toUpperCase().equals(name.toUpperCase())) {
+                return products[i].getId();
             }
         }
 
         Product product = new Product(Category.NONE,name,0, getNewIdx());
+        addToArrays(product);
         return product.getId();
     }
 
@@ -93,12 +101,15 @@ public class ActionProduct {
                 break;
             }
         }
-
         return  ++idx;
     }
 
+    public Product findProductByIndex(int idx){
+        return products[idx - 1];
+    }
 
-
-
+    public double getPriceByIdx(int idx){
+        return products[idx].getPrice();
+    }
 
 }

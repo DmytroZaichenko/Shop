@@ -52,13 +52,17 @@ public class ActionCustomer {
         int idx = 0;
 
         for (int i = 0; i < customers.length; i++) {
-            if (customers[i].getName().toUpperCase() == name.toUpperCase()) {
-                return idx;
+            if (customers[i] != null && customers[i].getName().toUpperCase().equals(name.toUpperCase())) {
+                return customers[i].getId();
             }
         }
 
         Customer customer = new Customer(getNewIdx(),name);
         return customer.getId();
 
+    }
+
+    public Customer findCustomerByIndex(int idx){
+        return customers[idx - 1];
     }
 }
