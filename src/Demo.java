@@ -4,12 +4,14 @@ public class Demo {
 
         Shop shop = new Shop();
 
-        Report report = new Report(shop);
-        report.printCatalog();
-        report.printPrice();
-        report.printRemainderOnStorage();
-        report.printTransactionOnDate(shop.getDate(-6));
-        report.printCountOfSalesByDay(-7);
+        ShopUI shopUI  = new ShopUI(shop);
+
+//        Report report = new Report(shop);
+//        report.printCatalog();
+//        report.printPrice();
+//        report.printRemainderOnStorage();
+//        report.printTransactionOnDate(shop.getDate(-6));
+//        report.printCountOfSalesByDay(-7);
 
     }
 
