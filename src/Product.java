@@ -30,4 +30,9 @@ public class Product {
     public Category getCategory() {
         return category;
     }
+
+    @Override
+    public String toString() {
+       return " " + name + " price: " + price;
+    }
 }

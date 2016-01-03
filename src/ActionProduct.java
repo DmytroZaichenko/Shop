@@ -1,21 +1,32 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActionProduct {
 
     private Product[][] catalogProducts;
     private Product[]   products;
+    private List<Product> listOfProduct;
+
 
     public ActionProduct() {
 
         products = new Product[100];
         catalogProducts = new Product[Category.values().length][];
+
+        listOfProduct = new ArrayList<>();
+
         fillCatalogProducts();
         initProducts();
     }
 
+    public List<Product> getListOfProduct() {
+        return listOfProduct;
+    }
 
     public Product[] getProducts() {
         return products;
     }
+
 
     public Product[][] getCatalogProducts() {
         return catalogProducts;
@@ -49,25 +60,35 @@ public class ActionProduct {
         }
     }
 
+    private void addToList(Product product){
+        listOfProduct.add(product);
+    }
+
     private void initProducts() {
 
         Product product = new Product(Category.ALCOHOL, "Jemeson", 521.26, getNewIdx());
         addToArrays(product);
+        addToList(product);
 
         product = new Product(Category.ALCOHOL, "William Lawson`s", 247.10, getNewIdx());
         addToArrays(product);
+        addToList(product);
 
         product = new Product(Category.DAIRY, "Burenka", 20.05, getNewIdx());
         addToArrays(product);
+        addToList(product);
 
         product = new Product(Category.DAIRY, "Kupyanskoe", 18.05, getNewIdx());
         addToArrays(product);
+        addToList(product);
 
         product = new Product(Category.BAKERY, "Black bread", 2.65, getNewIdx());
         addToArrays(product);
+        addToList(product);
 
         product = new Product(Category.BAKERY, "White bread", 3.25, getNewIdx());
         addToArrays(product);
+        addToList(product);
 
     }
 
@@ -77,7 +98,6 @@ public class ActionProduct {
     }
 
     public int findProductByName(String name) {
-        int idx = 0;
 
         for (int i = 0; i < products.length; i++) {
 
