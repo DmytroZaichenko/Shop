@@ -6,11 +6,11 @@ public class Demo {
 
         ShopUI shopUI  = new ShopUI(shop);
 
-        Report report = new Report(shop);
+//        Report report = new Report(shop);
 //        report.printCatalog();
 //        report.printPrice();
 //        report.printRemainderOnStorage();
-        report.printTransactionOnDate(shop.getDate(0));
+//        report.printTransactionOnDate(shop.getDate(0));
 //        report.printCountOfSalesByDay(-7);
 
     }
