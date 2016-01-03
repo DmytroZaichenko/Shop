@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Arc2D;
 import java.text.NumberFormat;
 import java.util.List;
 
@@ -77,7 +78,8 @@ public class ShopUI implements ActionListener  {
         JLabel lCount = new JLabel("Count: ");
         NumberFormat nf = NumberFormat.getNumberInstance();
         JFormattedTextField tfCount = new JFormattedTextField(nf);
-        tfCount.setValue(new Double(1));
+        tfCount.setValue(new Double(1.0));
+        tfCount.setColumns(15);
 
         panel.add(lCount, new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.LINE_START, 0, new Insets(0,0,0,0),0,0));
         panel.add(tfCount, new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.LINE_START, 0, new Insets(0,0,0,0),0,0));
@@ -90,7 +92,8 @@ public class ShopUI implements ActionListener  {
             public void actionPerformed(ActionEvent e) {
                 int idxCust = shop.getActionCustomer().findCustomerByName(tfName.getText());
                 int idxProduct = shop.getActionProduct().findProductByName(nameProduct);
-                shop.addTransaction(idxCust,idxProduct,shop.getDate(0),(Double)tfCount.getValue(),shop.getActionProduct().getPriceByIdx(idxProduct));
+                double count = Double.parseDouble(tfCount.getText());
+                shop.addTransaction(idxCust,idxProduct,shop.getDate(0),count,shop.getActionProduct().getPriceByIdx(idxProduct));
                 report.printTransactionOnDate(shop.getDate(0));
             }
         });
