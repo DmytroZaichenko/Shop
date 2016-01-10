@@ -49,22 +49,23 @@ public class Shop {
         addCountToStorage(actionProduct.findProductByName("Kupyanskoe"), 21);
 
         //add transaction
-//        int idxCustomer = actionCustomer.findCustomerByName("Perto");
-//        int idxProduct = actionProduct.findProductByName("Burenka");
-//
-//        addTransaction(idxCustomer, idxProduct, getDate(-7), 1 , actionProduct.getPriceByIdx(idxProduct));
-//
-//        idxProduct = actionProduct.findProductByName("white bread");
-//        addTransaction(idxCustomer, idxProduct, getDate(-7), 1 , actionProduct.getPriceByIdx(idxProduct));
-//
-//        idxCustomer = actionCustomer.findCustomerByName("Dmytro");
-//        addTransaction(idxCustomer, idxProduct, getDate(-6), 2 , actionProduct.getPriceByIdx(idxProduct));
-//
-//        idxProduct = actionProduct.findProductByName("burenka");
-//        addTransaction(idxCustomer, idxProduct, getDate(-6), 2 , actionProduct.getPriceByIdx(idxProduct));
+        int idxCustomer = actionCustomer.findCustomerByName("Perto");
+        int idxProduct = actionProduct.findProductByName("Burenka");
+
+        addTransaction(idxCustomer, idxProduct, getDate(-7), 1 , actionProduct.getPriceByIdx(idxProduct));
+
+        idxProduct = actionProduct.findProductByName("white bread");
+        addTransaction(idxCustomer, idxProduct, getDate(-7), 1 , actionProduct.getPriceByIdx(idxProduct));
+
+        idxCustomer = actionCustomer.findCustomerByName("Dmytro");
+        addTransaction(idxCustomer, idxProduct, getDate(-6), 2 , actionProduct.getPriceByIdx(idxProduct));
+
+        idxProduct = actionProduct.findProductByName("burenka");
+        addTransaction(idxCustomer, idxProduct, getDate(-6), 2 , actionProduct.getPriceByIdx(idxProduct));
 
 
     }
+
 
     public Date getDate(int countOfDate){
 

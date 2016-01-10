@@ -2,15 +2,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Arc2D;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class ShopUI implements ActionListener  {
+public class ShopUI {
 
     private Shop shop;
     private String nameProduct;
     private Report report;
+    private JPanel pTable;
 
     public ShopUI() {
 
@@ -23,20 +29,32 @@ public class ShopUI implements ActionListener  {
 
         JFrame f = new JFrame();
         f.setMinimumSize(new Dimension(800,600));
-        f.setLocation(300,100);
-
-        f.getContentPane().add(createSellingPanel());
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //f.setLocation(300,100);
+
+        TableDemo newContentPane = new TableDemo();
+        newContentPane.setOpaque(true); //content panes must be opaque
+        f.setContentPane(newContentPane);
+
+
+        //Create and set up the content pane.
+//        JPanel newContentPane = createTablePanel();
+//        newContentPane.setOpaque(true); //content panes must be opaque
+//        f.setContentPane(newContentPane);
+
+        //f.getContentPane().add(createSellingPanel());
+
+
         f.pack();
 
         f.setVisible(true);
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        nameProduct = e.getActionCommand();
-    }
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        nameProduct = e.getActionCommand();
+//    }
 
     private JPanel createSellingPanel(){
 
@@ -62,7 +80,7 @@ public class ShopUI implements ActionListener  {
         for (Product p : products){
             JRadioButton rb = new JRadioButton(p.toString());
             rb.setActionCommand(p.getName());
-            rb.addActionListener(this);
+            //rb.addActionListener(this);
             productsGroup.add(rb);
             pProducts.add(rb);
         }
@@ -99,6 +117,58 @@ public class ShopUI implements ActionListener  {
         });
 
         return panel;
+    }
+
+    private class TableDemo extends JPanel{
+
+        public TableDemo(){
+
+            super(new GridLayout(1,0));
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.YYYY");
+            ActionProduct ap = shop.getActionProduct();
+            ActionCustomer ac = shop.getActionCustomer();
+
+            int nom = 0;
+            String[] columnNames = {"id", "date","Product","Count","Customer"};
+
+            List<Transaction> lt = new ArrayList<>();
+            Transaction[] transactions = shop.getTransactions();
+            for (int i = 0; i < transactions.length ; i++) {
+                Transaction tran = transactions[i];
+                if (tran == null) {
+                    break;
+                }
+                lt.add(tran);
+            }
+
+            Object[][] data = new Object[lt.size()][];
+
+            for (int i = 0; i < lt.size(); i ++) {
+                Transaction tr = lt.get(i);
+                Product product = ap.findProductByIndex(tr.getIdProduct());
+                Customer customer = ac.findCustomerByIndex(tr.getIdCustomer());
+                ++nom;
+
+                Object[] co =     new Object[]{nom,
+                                            sdf.format(tr.getDate()),
+                                            product.getName(),
+                                            tr.getCount(),
+                                            customer.getName()
+                                            };
+                data[i] = co;
+
+            }
+
+            final JTable table = new JTable(data, columnNames);
+            table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+            table.setFillsViewportHeight(true);
+
+            JScrollPane scrollPane = new JScrollPane(table);
+            add(scrollPane);
+
+        }
+
     }
 
 

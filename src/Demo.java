@@ -4,7 +4,13 @@ public class Demo {
 
         Shop shop = new Shop();
 
-        ShopUI shopUI  = new ShopUI(shop);
+        //ShopUI shopUI  = new ShopUI(shop);
+
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new ShopUI(shop);
+            }
+        });
 
 //        Report report = new Report(shop);
 //        report.printCatalog();
