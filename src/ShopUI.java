@@ -17,8 +17,29 @@ public class ShopUI {
     private String nameProduct;
     private Report report;
     private JPanel pTable;
+    private JFrame f;
+    private JPanel pSelling;
 
     public ShopUI() {
+
+    }
+
+    private void showData(){
+        f.getContentPane().removeAll();
+        pTable = new TableDemo();
+        pTable.setOpaque(true);
+        f.getContentPane().add(pTable);
+        f.pack();
+        f.repaint();
+    }
+
+    private void showSellingForm(){
+
+        f.getContentPane().removeAll();
+        f.getContentPane().add(pSelling);
+
+        f.pack();
+        f.repaint();
 
     }
 
@@ -27,24 +48,32 @@ public class ShopUI {
 
         report = new Report(shop);
 
-        JFrame f = new JFrame();
+        f = new JFrame();
         f.setMinimumSize(new Dimension(800,600));
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //f.setLocation(300,100);
+        f.setLocation(300,100);
 
-        TableDemo newContentPane = new TableDemo();
-        newContentPane.setOpaque(true); //content panes must be opaque
-        f.setContentPane(newContentPane);
+        JMenuItem mi = new JMenuItem("Buy products");
+        mi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showSellingForm();
+            }
+        });
 
+        JMenu m = new JMenu("File");
+        m.add(mi);
 
-        //Create and set up the content pane.
-//        JPanel newContentPane = createTablePanel();
-//        newContentPane.setOpaque(true); //content panes must be opaque
-//        f.setContentPane(newContentPane);
+        JMenuBar mb = new JMenuBar();
+        mb.add(m);
 
-        //f.getContentPane().add(createSellingPanel());
+        f.getRootPane().setJMenuBar(mb);
 
+        pSelling = createSellingPanel();
 
+        pTable = new TableDemo();
+        pTable.setOpaque(true); //content panes must be opaque
+        f.getContentPane().add(pTable);
         f.pack();
 
         f.setVisible(true);
@@ -113,6 +142,7 @@ public class ShopUI {
                 double count = Double.parseDouble(tfCount.getText());
                 shop.addTransaction(idxCust,idxProduct,shop.getDate(0),count,shop.getActionProduct().getPriceByIdx(idxProduct));
                 report.printTransactionOnDate(shop.getDate(0));
+                showData();
             }
         });
 
