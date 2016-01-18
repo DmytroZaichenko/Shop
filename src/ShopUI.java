@@ -80,11 +80,6 @@ public class ShopUI {
 
     }
 
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        nameProduct = e.getActionCommand();
-//    }
-
     private JPanel createSellingPanel(){
 
         JPanel panel = new JPanel();

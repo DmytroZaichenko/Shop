@@ -1,10 +1,14 @@
+import java.awt.SplashScreen;
 public class Demo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         Shop shop = new Shop();
 
         //ShopUI shopUI  = new ShopUI(shop);
+        SplashScreen splash = SplashScreen.getSplashScreen();
+        Thread.sleep(5000);
+        splash.close();
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
