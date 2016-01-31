@@ -7,7 +7,7 @@ public class Shop {
     private ActionCustomer actionCustomer;
     private Report report;
 
-    private Transaction[] transactions;
+    private ArrayList<Transaction> transactions;
 
     private int[][] storage;
 
@@ -23,7 +23,7 @@ public class Shop {
         return actionProduct;
     }
 
-    public Transaction[] getTransactions() {
+    public ArrayList getTransactions() {
         return transactions;
     }
 
@@ -33,7 +33,7 @@ public class Shop {
         actionCustomer = new ActionCustomer();
         //
         storage = new int[100][2];
-        transactions = new Transaction[100];
+        transactions = new ArrayList<>();
 
         initShop();
 
@@ -88,19 +88,13 @@ public class Shop {
         t.setDate(date);
         t.setCount(count);
         t.setPrice(price);
-
+        t.setDiscount();
         addToTransaction(t);
 
     }
 
     private void addToTransaction(Transaction t){
-
-        for (int i = 0; i < transactions.length ; i++) {
-            if (transactions[i] == null){
-                transactions[i] = t;
-                break;
-            }
-        }
+       transactions.add(t);
     }
 
     public void addCountToStorage(int idxProduct, int count){
@@ -124,10 +118,5 @@ public class Shop {
 
     }
 
-
-    public Product findFromStorage(int idx){
-
-        return null;
-    }
 
 }

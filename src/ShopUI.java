@@ -158,9 +158,9 @@ public class ShopUI {
             String[] columnNames = {"id", "date","Product","Count","Customer"};
 
             List<Transaction> lt = new ArrayList<>();
-            Transaction[] transactions = shop.getTransactions();
-            for (int i = 0; i < transactions.length ; i++) {
-                Transaction tran = transactions[i];
+            ArrayList<Transaction> transactions = shop.getTransactions();
+            for (int i = 0; i < transactions.size() ; i++) {
+                Transaction tran = transactions.get(i);
                 if (tran == null) {
                     break;
                 }

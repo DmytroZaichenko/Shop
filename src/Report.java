@@ -1,4 +1,5 @@
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Report {
@@ -79,7 +80,7 @@ public class Report {
         System.out.println("");
         System.out.println("TRANSACTION ON " + dateFormatReport.format(date));
 
-        Transaction[] transactions = shop.getTransactions();
+        ArrayList<Transaction> transactions = shop.getTransactions();
         ActionProduct ap = shop.getActionProduct();
         ActionCustomer ac = shop.getActionCustomer();
 
@@ -88,9 +89,9 @@ public class Report {
         double count = 0;
         double sum = 0;
 
-        for (int i = 0; i < transactions.length; i++) {
+        for (int i = 0; i < transactions.size(); i++) {
 
-            Transaction tran = transactions[i];
+            Transaction tran = transactions.get(i);
 
             if (tran != null && tran.getDate().equals(date)){
 
@@ -129,14 +130,14 @@ public class Report {
         System.out.println("SHOW SALES WITH " + dateFormatReport.format(fDate));
 
         double countByDay = 0;
-        Transaction[] transactions = shop.getTransactions();
+        ArrayList<Transaction> transactions = shop.getTransactions();
 
         while ( countOfDay != 1){
 
             countByDay = 0;
-            for (int i = 0; i < transactions.length; i++) {
+            for (int i = 0; i < transactions.size(); i++) {
 
-                Transaction tran = transactions[i];
+                Transaction tran = transactions.get(i);
                 if (tran == null){break;};
 
                 if (tran.getDate().equals(fDate)){

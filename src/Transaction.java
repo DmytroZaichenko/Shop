@@ -7,9 +7,27 @@ public class Transaction {
     private Date date;
     private double count;
     private double price;
+    private double discount;
 
     public Transaction() {
 
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount() {
+        double disc = 0;
+
+        double sum = price * count;
+        if (sum >= 50 && sum < 100){
+            disc = sum * 0.05;
+        }else if (sum >= 100){
+            disc = sum * 0.1;
+        }
+
+        this.discount = disc;
     }
 
     public int getIdCustomer() {
